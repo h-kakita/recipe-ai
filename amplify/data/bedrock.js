@@ -1,12 +1,12 @@
 export function request(ctx) {
   const { ingredients = [] } = ctx.args;
 
-  const prompt = `Suggest a recipe idea using these ingredients : ${ingredients.join(
+  const prompt = `これらの食材を使ったレシピのアイデアまたは料理名から使用する食材やレシピを提案してください : ${ingredients.join(
     ","
   )}.`;
 
   return {
-    resourcePath: `/model/anthropic.claude-3-sonnet-20240229-v1:0/invoke`,
+    resourcePath: `/model/anthropic.claude-3-haiku-20240307-v1:0/invoke`,
     method: "POST",
     params: {
       headers: {
