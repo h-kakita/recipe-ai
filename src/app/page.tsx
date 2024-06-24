@@ -1,12 +1,11 @@
-"use client";
+'use client';
 
-import React, { FormEvent, useState } from "react";
-import { Card } from "@aws-amplify/ui-react";
-import { generateRecipe } from "./actions";
-
+import React, { FormEvent, useState } from 'react';
+import { Card } from '@aws-amplify/ui-react';
+import { generateRecipe } from './actions';
 
 export default function Home() {
-  const [result, setResult] = useState<string>("");
+  const [result, setResult] = useState<string>('');
   const [loading, setloading] = useState(false);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -16,7 +15,7 @@ export default function Home() {
     try {
       const formData = new FormData(event.currentTarget);
       const data = await generateRecipe(formData);
-      const recipe = typeof data === "string" ? data : "No data returned";
+      const recipe = typeof data === 'string' ? data : 'No data returned';
       setloading(false);
       setResult(recipe);
     } catch (e) {
@@ -28,11 +27,9 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center  p-24  m-auto ">
       <div className=" pb-10 mx-auto text-center flex flex-col items-start -center max-w-3xl">
         <h1 className=" text-4xl  font-bold  text-gray-900 sm:text-6xl ">
-          Meet Your Personal <span className=" text-blue-600"> Recipe AI </span>
+          <span className=" text-blue-600"> 凛レシピ AI </span>
           <p className=" mt-10 font-medium   text-lg  max-w-prose text-gray-900 ">
-            Simply type few ingredients using the format ingredient1,
-            ingredient12,..etc and Recipe AI will generate an all-new recipe on
-            demand...
+            食材や料理名を入力すると、レシピを生成します。
           </p>
         </h1>
       </div>
@@ -54,16 +51,15 @@ export default function Home() {
             type="submit"
             className="  text-white p-2 rounded-lg bg-blue-500   w-1/2 text-xl  "
           >
-            Generate
+            レシピを生成
           </button>
         </form>
       </section>
       {loading ? (
         <div className="flex flex-col items-center gap-4 w-1/2  mx-auto ">
           <h2 className="m-10 font-medium   text-xl   max-w-prose text-blue-600 ">
-            Wait for it...
+            レシピを生成しています...
           </h2>
-
         </div>
       ) : (
         <div>
