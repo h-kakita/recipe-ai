@@ -41,10 +41,18 @@ export default function Home() {
         >
           <input
             type="text"
-            id="ingredients"
-            name="ingredients"
+            id="ingredientsPrompt"
+            name="ingredientsPrompt"
             required
-            placeholder="Ingredient1, Ingredient2, Ingredient3,..etc"
+            placeholder="プロンプト（料理の難易度などを記入してください）"
+            className="border border-black  text-gray-900 p-4 rounded-lg max-w-full w-full text-xl "
+          />
+          <input
+            type="text"
+            id="ingredientsText"
+            name="ingredientsText"
+            required
+            placeholder="食材や料理名を打ち込んでください"
             className="border border-black  text-gray-900 p-4 rounded-lg max-w-full w-full text-xl "
           />
           <button

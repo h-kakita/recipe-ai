@@ -1,7 +1,7 @@
 export function request(ctx) {
   const { ingredients = [] } = ctx.args;
 
-  const prompt = `これらの食材を使ったレシピのアイデアまたは料理名から使用する食材やレシピを提案してください : ${ingredients.join(
+  const prompt = `${ingredients.join(
     ","
   )}.`;
 
