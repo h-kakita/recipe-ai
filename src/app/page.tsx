@@ -1,7 +1,7 @@
 'use client';
 
 import React, { FormEvent, useState } from 'react';
-import { Card } from '@aws-amplify/ui-react';
+import { Flex, Button, Card, TextAreaField } from '@aws-amplify/ui-react';
 import { generateRecipe } from './actions';
 
 export default function Home() {
@@ -25,47 +25,54 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center  p-24  m-auto ">
-      <div className=" pb-10 mx-auto text-center flex flex-col items-start -center max-w-3xl">
+      <Flex className=" pb-10 mx-auto text-center flex flex-col items-start -center max-w-3xl">
         <h1 className=" text-4xl  font-bold  text-gray-900 sm:text-6xl ">
           <span className=" text-blue-600"> 凛レシピ AI </span>
           <p className=" mt-10 font-medium   text-lg  max-w-prose text-gray-900 ">
             食材や料理名を入力すると、レシピを生成します。
           </p>
         </h1>
-      </div>
+      </Flex>
 
-      <section className="   w-1/2  mx-auto ">
+      <section className="mx-auto sm:w-full md:w-1/2">
         <form
           onSubmit={onSubmit}
           className=" p-4 flex flex-col items-center gap-4  max-w-full mx-auto"
         >
-          <input
-            type="text"
-            id="ingredientsPrompt"
-            name="ingredientsPrompt"
-            required
-            placeholder="プロンプト（料理の難易度などを記入してください）"
-            className="border border-black  text-gray-900 p-4 rounded-lg max-w-full w-full text-xl "
-          />
-          <input
-            type="text"
-            id="ingredientsText"
-            name="ingredientsText"
-            required
-            placeholder="食材や料理名を打ち込んでください"
-            className="border border-black  text-gray-900 p-4 rounded-lg max-w-full w-full text-xl "
-          />
-          <button
-            type="submit"
-            className="  text-white p-2 rounded-lg bg-blue-500   w-1/2 text-xl  "
-          >
-            レシピを生成
-          </button>
+          <Flex>
+            <TextAreaField
+              label="プロンプト（料理の難易度などを記入してください）"
+              labelHidden={false}
+              resize="vertical"
+              id="ingredientsPrompt"
+              name="ingredientsPrompt"
+              className="border border-black  text-gray-900 p-4 rounded-lg max-w-full w-full text-xl "
+              style={{ width: '100%' }}
+            />
+          </Flex>
+          <Flex direction={{ base: 'column', large: 'row' }}>
+            <TextAreaField
+              label="食材や料理名を打ち込んでください"
+              labelHidden
+              id="ingredientsText"
+              name="ingredientsText"
+              className="border border-black p-4 rounded-lg max-w-full w-full text-xl "
+              style={{ width: '100%' }}
+            />
+          </Flex>
+          <Flex direction={{ base: 'column', large: 'row' }}>
+            <Button
+              type="submit"
+              className="  text-white p-2 rounded-lg bg-blue-500    text-xl  "
+            >
+              レシピを生成
+            </Button>
+          </Flex>
         </form>
       </section>
       {loading ? (
         <div className="flex flex-col items-center gap-4 w-1/2  mx-auto ">
-          <h2 className="m-10 font-medium   text-xl   max-w-prose text-blue-600 ">
+          <h2 className="m-10 font-medium   text-xl   mx-auto sm:w-full md:w-1/2 text-blue-600 ">
             レシピを生成しています...
           </h2>
         </div>
